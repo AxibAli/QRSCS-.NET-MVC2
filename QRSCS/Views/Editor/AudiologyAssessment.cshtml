@@ -1,0 +1,590 @@
+﻿@model QRSCS.Models.AudiologyAssessmentModel
+@{
+    ViewBag.Title = "Audiology Assessment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<style>
+
+
+    .box {
+        border: 2px solid black;
+        height: 1000px
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+    }
+</style>
+<div class="col-4 mb-1">
+    <div class="d-flex">
+        <input class="form-control" id="SearchBox" placeholder="Enter Gr No# for Search" />
+        <button class="btn mx-2" onclick="Search(document.getElementById('SearchBox').value)">Search</button>
+    </div>
+    <mute><small></small></mute><br />
+</div>
+<div class="col-3 mb-1">
+    <div class="d-flex">
+        <input class="form-control my-2" id="grno" placeholder="Enter Gr No# to Add or Update" />
+    </div>
+    <span id="Error" class="text-danger"></span>
+</div>
+<div class="text-center" id="Name"></div>
+<div class="row mb-4">
+    <div class="col-6">
+        <div class="box">
+            <div>
+                <h5 class="text-center mt-3">Left Ear</h5>
+                <h6 class="text-center my-3">Air Unmasked</h6>
+                <div class="row mx-1">
+                    <div class="col-2">
+                        <label>Frequency (Hz): </label>
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_l_freq1" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_l_freq2" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_l_freq3" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_l_freq4" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_l_freq5" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="row mx-1">
+                    <div class="col-2">
+                        <label>Hearing Level (dBHL): </label>
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_l_hl1" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_l_hl2" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_l_hl3" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_l_hl4" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_l_hl5" />
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-sm btn-warning my-1" onclick="Submit_AU_LeftEar(document.getElementById('grno').value)">Save and Plot</button>
+            </div>
+            <div>
+                <h6 class="text-center my-3">Bone Masked</h6>
+                <div class="row mx-1">
+                    <div class="col-2">
+                        <label>Frequency (Hz): </label>
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_l_freq1" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_l_freq2" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_l_freq3" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_l_freq4" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_l_freq5" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="row mx-1">
+                    <div class="col-2">
+                        <label>Hearing Level (dBHL): </label>
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_l_hl1" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_l_hl2" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_l_hl3" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_l_hl4" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_l_hl5" />
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-sm btn-warning my-1" onclick="Submit_BM_LeftEar(document.getElementById('grno').value)">Save and Plot</button>
+            </div>
+            <div style="width:80%; margin: auto;">
+                <canvas id="AULeftEar" style="width:100%;max-width:600px"></canvas>
+                <canvas id="BMLeftEar" style="width:100%;max-width:600px"></canvas>
+            </div>
+        </div>
+    </div><div class="col-6">
+        <div class="box">
+            <div>
+                <h5 class="text-center mt-3">Right Ear</h5>
+                <h6 class="text-center my-3">Air Unmasked</h6>
+                <div class="row mx-1">
+                    <div class="col-2">
+                        <label>Frequency (Hz): </label>
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_r_freq1" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_r_freq2" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_r_freq3" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_r_freq4" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_r_freq5" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="row mx-1">
+                    <div class="col-2">
+                        <label>Hearing Level (dBHL): </label>
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_r_hl1" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_r_hl2" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_r_hl3" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_r_hl4" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="AU_r_hl5" />
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-sm btn-warning my-1" onclick="Submit_AU_RightEar(document.getElementById('grno').value)">Save and Plot</button>
+            </div>
+            <div>
+                <h6 class="text-center my-3">Bone Masked</h6>
+                <div class="row mx-1">
+                    <div class="col-2">
+                        <label>Frequency (Hz): </label>
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_r_freq1" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_r_freq2" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_r_freq3" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_r_freq4" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_r_freq5" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="row mx-1">
+                    <div class="col-2">
+                        <label>Hearing Level (dBHL): </label>
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_r_hl1" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_r_hl2" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_r_hl3" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_r_hl4" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" id="BM_r_hl5" />
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-sm btn-warning my-1" onclick="Submit_BM_RightEar(document.getElementById('grno').value)">Save and Plot</button>
+            </div>
+            <div style="width:80%; margin: auto;">
+                <canvas id="AURightEar" style="width:100%;max-width:600px"></canvas>
+                <canvas id="BMRightEar" style="width:100%;max-width:600px"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function Submit_AU_LeftEar(id) {
+
+        if (id == "") {
+            document.getElementById("Error").innerText = "Required"
+            return null
+        }
+        else {
+            document.getElementById("Error").innerText = ""
+        }
+
+
+        var AU_l_freq1 = Number(document.getElementById("AU_l_freq1").value)
+        var AU_l_freq2 = Number(document.getElementById("AU_l_freq2").value)
+        var AU_l_freq3 = Number(document.getElementById("AU_l_freq3").value)
+        var AU_l_freq4 = Number(document.getElementById("AU_l_freq4").value)
+        var AU_l_freq5 = Number(document.getElementById("AU_l_freq5").value)
+
+        var AU_l_hl1 = Number(document.getElementById("AU_l_hl1").value)
+        var AU_l_hl2 = Number(document.getElementById("AU_l_hl2").value)
+        var AU_l_hl3 = Number(document.getElementById("AU_l_hl3").value)
+        var AU_l_hl4 = Number(document.getElementById("AU_l_hl4").value)
+        var AU_l_hl5 = Number(document.getElementById("AU_l_hl5").value)
+
+        var AU_l_freq = AU_l_freq1 + "," + AU_l_freq2 + "," + + AU_l_freq3 + "," + + AU_l_freq4 + "," + + AU_l_freq5
+        var AU_l_hl = AU_l_hl1 + "," + AU_l_hl2 + "," + + AU_l_hl3 + "," + + AU_l_hl4 + "," + AU_l_hl5
+
+
+        var xValues = [AU_l_freq1, AU_l_freq2, AU_l_freq3, AU_l_freq4, AU_l_freq5];
+        var yValues = [AU_l_hl1, AU_l_hl2, AU_l_hl3, AU_l_hl4, AU_l_hl5];
+        xValues = xValues.sort()
+        yValues = yValues.sort()
+        new Chart("AULeftEar", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    fill: false,
+                    lineTension: 0,
+                    backgroundColor: "rgba(0,0,255,1.0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: { display: false },
+                scales: {
+                    xAxes: [{ ticks: { min: 125, max: 8000 } }],
+                    yAxes: [{ ticks: { min: 20, max: 60 } }],
+                },
+                title: {
+                    display: true,
+                    text: 'Air Unmasked'
+                }
+            }
+        });
+        var grno = id
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ LeftEarAirUnmaskedFrequecy: AU_l_freq, LeftEarAirUnmaskedHearingLevel: AU_l_hl, GrNo: grno })
+        };
+        fetch('http://localhost:51376/Editor/AudiologyAssessment', requestOptions)
+            .then(response => response.json())
+            .then(json => {
+                alert(json)
+            })
+    }
+    function Submit_BM_LeftEar(id) {
+        if (id == "") {
+            document.getElementById("Error").innerText = "Required"
+            return null
+        }
+        else {
+            document.getElementById("Error").innerText = ""
+        }
+
+        var BM_l_freq1 = Number(document.getElementById("BM_l_freq1").value)
+        var BM_l_freq2 = Number(document.getElementById("BM_l_freq2").value)
+        var BM_l_freq3 = Number(document.getElementById("BM_l_freq3").value)
+        var BM_l_freq4 = Number(document.getElementById("BM_l_freq4").value)
+        var BM_l_freq5 = Number(document.getElementById("BM_l_freq5").value)
+
+        var BM_l_hl1 = Number(document.getElementById("BM_l_hl1").value)
+        var BM_l_hl2 = Number(document.getElementById("BM_l_hl2").value)
+        var BM_l_hl3 = Number(document.getElementById("BM_l_hl3").value)
+        var BM_l_hl4 = Number(document.getElementById("BM_l_hl4").value)
+        var BM_l_hl5 = Number(document.getElementById("BM_l_hl5").value)
+
+        var BM_l_freq = BM_l_freq1 + "," + BM_l_freq2 + "," + + BM_l_freq3 + "," + + BM_l_freq4 + "," + + BM_l_freq5
+        var BM_l_hl = BM_l_hl1 + "," + BM_l_hl2 + "," + + BM_l_hl3 + "," + + BM_l_hl4 + "," + BM_l_hl5
+
+
+        var xValues = [BM_l_freq1, BM_l_freq2, BM_l_freq3, BM_l_freq4, BM_l_freq5];
+        var yValues = [BM_l_hl1, BM_l_hl2, BM_l_hl3, BM_l_hl4, BM_l_hl5];
+        xValues = xValues.sort()
+        yValues = yValues.sort()
+        new Chart("BMLeftEar", {
+            type: "line",
+            options: {
+                title: {
+                    display: true,
+                    text: 'TEST'
+                }
+            },
+            data: {
+                labels: xValues,
+                datasets: [{
+                    fill: false,
+                    lineTension: 0,
+                    backgroundColor: "rgba(0,0,255,1.0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: { display: false },
+                scales: {
+                    xAxes: [{ ticks: { min: 125, max: 8000 } }],
+                    yAxes: [{ ticks: { min: 20, max: 60 } }],
+                },
+                title: {
+                    display: true,
+                    text: 'Bone Masked'
+                }
+            }
+        });
+        var grno = id
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ LeftEarBoneMaskedFrequecy: BM_l_freq, LeftEarBoneMaskedHearingLevel: BM_l_hl, GrNo: grno })
+        };
+        fetch('http://localhost:51376/Editor/AudiologyAssessment', requestOptions)
+            .then(response => response.json())
+            .then(json => {
+                alert(json)
+            })
+    }
+
+    function Submit_AU_RightEar(id) {
+        if (id == "") {
+            document.getElementById("Error").innerText = "Required"
+            return null
+        }
+        else {
+            document.getElementById("Error").innerText = ""
+        }
+
+        var AU_r_freq1 = Number(document.getElementById("AU_r_freq1").value)
+        var AU_r_freq2 = Number(document.getElementById("AU_r_freq2").value)
+        var AU_r_freq3 = Number(document.getElementById("AU_r_freq3").value)
+        var AU_r_freq4 = Number(document.getElementById("AU_r_freq4").value)
+        var AU_r_freq5 = Number(document.getElementById("AU_r_freq5").value)
+
+        var AU_r_hl1 = Number(document.getElementById("AU_r_hl1").value)
+        var AU_r_hl2 = Number(document.getElementById("AU_r_hl2").value)
+        var AU_r_hl3 = Number(document.getElementById("AU_r_hl3").value)
+        var AU_r_hl4 = Number(document.getElementById("AU_r_hl4").value)
+        var AU_r_hl5 = Number(document.getElementById("AU_r_hl5").value)
+
+        var AU_r_freq = AU_r_freq1 + "," + AU_r_freq2 + "," + + AU_r_freq3 + "," + + AU_r_freq4 + "," + + AU_r_freq5
+        var AU_r_hl = AU_r_hl1 + "," + AU_r_hl2 + "," + + AU_r_hl3 + "," + + AU_r_hl4 + "," + AU_r_hl5
+
+
+        var xValues = [AU_r_freq1, AU_r_freq2, AU_r_freq3, AU_r_freq4, AU_r_freq5];
+        var yValues = [AU_r_hl1, AU_r_hl2, AU_r_hl3, AU_r_hl4, AU_r_hl5];
+        xValues = xValues.sort()
+        yValues = yValues.sort()
+        new Chart("AURightEar", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    fill: false,
+                    lineTension: 0,
+                    backgroundColor: "rgba(0,0,255,1.0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: { display: false },
+                scales: {
+                    xAxes: [{ ticks: { min: 125, max: 8000 } }],
+                    yAxes: [{ ticks: { min: 20, max: 60 } }],
+                },
+                title: {
+                    display: true,
+                    text: 'Air Unmasked'
+                }
+            }
+        });
+        var grno = id
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ RightEarAirUnmaskedFrequecy: AU_r_freq, RightEarAirUnmaskedHearingLevel: AU_r_hl, GrNo: grno })
+        };
+        fetch('http://localhost:51376/Editor/AudiologyAssessment', requestOptions)
+            .then(response => response.json())
+            .then(json => {
+                alert(json)
+            })
+    }
+    function Submit_BM_RightEar(id) {
+        if (id == "") {
+            document.getElementById("Error").innerText = "Required"
+            return null
+        }
+        else {
+            document.getElementById("Error").innerText = ""
+        }
+        var BM_r_freq1 = Number(document.getElementById("BM_r_freq1").value)
+        var BM_r_freq2 = Number(document.getElementById("BM_r_freq2").value)
+        var BM_r_freq3 = Number(document.getElementById("BM_r_freq3").value)
+        var BM_r_freq4 = Number(document.getElementById("BM_r_freq4").value)
+        var BM_r_freq5 = Number(document.getElementById("BM_r_freq5").value)
+
+        var BM_r_hl1 = Number(document.getElementById("BM_r_hl1").value)
+        var BM_r_hl2 = Number(document.getElementById("BM_r_hl2").value)
+        var BM_r_hl3 = Number(document.getElementById("BM_r_hl3").value)
+        var BM_r_hl4 = Number(document.getElementById("BM_r_hl4").value)
+        var BM_r_hl5 = Number(document.getElementById("BM_r_hl5").value)
+
+        var BM_r_freq = BM_r_freq1 + "," + BM_r_freq2 + "," + + BM_r_freq3 + "," + + BM_r_freq4 + "," + + BM_r_freq5
+        var BM_r_hl = BM_r_hl1 + "," + BM_r_hl2 + "," + + BM_r_hl3 + "," + + BM_r_hl4 + "," + BM_r_hl5
+
+
+        var xValues = [BM_r_freq1, BM_r_freq2, BM_r_freq3, BM_r_freq4, BM_r_freq5];
+        var yValues = [BM_r_hl1, BM_r_hl2, BM_r_hl3, BM_r_hl4, BM_r_hl5];
+        xValues = xValues.sort()
+        yValues = yValues.sort()
+        new Chart("BMRightEar", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    fill: false,
+                    lineTension: 0,
+                    backgroundColor: "rgba(0,0,255,1.0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: { display: false },
+                scales: {
+                    xAxes: [{ ticks: { min: 125, max: 8000 } }],
+                    yAxes: [{ ticks: { min: 20, max: 60 } }],
+                },
+                title: {
+                    display: true,
+                    text: 'Bone Masked'
+                }
+            }
+        });
+        var grno = id
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ RightEarBoneMaskedFrequecy: BM_r_freq, RightEarBoneMaskedHearingLevel: BM_r_hl, GrNo: grno })
+        };
+        fetch('http://localhost:51376/Editor/AudiologyAssessment', requestOptions)
+            .then(response => response.json())
+            .then(json => {
+                alert(json)
+            })
+    }
+
+    function Search(id) {
+        debugger
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: id })
+        };
+        fetch('/Editor/GetAudiologyAssessment', requestOptions)
+            .then(response => response.json())
+            .then(json => {
+                if (json.LeftEarAirUnmaskedFrequecy == null && json.LeftEarAirUnmaskedHearingLevel == null && json.LeftEarBoneMaskedFrequecy == null && json.LeftEarBoneMaskedHearingLevel == null && json.RightEarAirUnmaskedFrequecy == null && json.RightEarAirUnmaskedHearingLevel == null && json.RightEarBoneMaskedFrequecy == null && json.RightEarBoneMaskedHearingLevel == null) {
+                    alert("No Record Found")
+                    location.reload()
+                }
+                else {
+                    console.log(json)
+                    if (json.Name != "" && json.Father_Name != "" && json.Disability != "") {
+                        document.getElementById("Name").innerHTML = "<h6><small>Name: </small>" + json.Name + "</h6><h6><small>Father Name: </small>" + json.Father_Name + "</h6><h6><small>Disability: </small>" + json.Disability + "</h6>"
+
+                        document.getElementById("AU_l_freq1").value = json.LeftEarAirUnmaskedFrequecy.split(",")[0]
+                        document.getElementById("AU_l_freq2").value = json.LeftEarAirUnmaskedFrequecy.split(",")[1]
+                        document.getElementById("AU_l_freq3").value = json.LeftEarAirUnmaskedFrequecy.split(",")[2]
+                        document.getElementById("AU_l_freq4").value = json.LeftEarAirUnmaskedFrequecy.split(",")[3]
+                        document.getElementById("AU_l_freq5").value = json.LeftEarAirUnmaskedFrequecy.split(",")[4]
+
+                        document.getElementById("AU_l_hl1").value = json.LeftEarAirUnmaskedHearingLevel.split(",")[0]
+                        document.getElementById("AU_l_hl2").value = json.LeftEarAirUnmaskedHearingLevel.split(",")[1]
+                        document.getElementById("AU_l_hl3").value = json.LeftEarAirUnmaskedHearingLevel.split(",")[2]
+                        document.getElementById("AU_l_hl4").value = json.LeftEarAirUnmaskedHearingLevel.split(",")[3]
+                        document.getElementById("AU_l_hl5").value = json.LeftEarAirUnmaskedHearingLevel.split(",")[4]
+
+                        document.getElementById("BM_l_freq1").value = json.LeftEarBoneMaskedFrequecy.split(",")[0]
+                        document.getElementById("BM_l_freq2").value = json.LeftEarBoneMaskedFrequecy.split(",")[1]
+                        document.getElementById("BM_l_freq3").value = json.LeftEarBoneMaskedFrequecy.split(",")[2]
+                        document.getElementById("BM_l_freq4").value = json.LeftEarBoneMaskedFrequecy.split(",")[3]
+                        document.getElementById("BM_l_freq5").value = json.LeftEarBoneMaskedFrequecy.split(",")[4]
+
+                        document.getElementById("BM_l_hl1").value = json.LeftEarBoneMaskedHearingLevel.split(",")[0]
+                        document.getElementById("BM_l_hl2").value = json.LeftEarBoneMaskedHearingLevel.split(",")[1]
+                        document.getElementById("BM_l_hl3").value = json.LeftEarBoneMaskedHearingLevel.split(",")[2]
+                        document.getElementById("BM_l_hl4").value = json.LeftEarBoneMaskedHearingLevel.split(",")[3]
+                        document.getElementById("BM_l_hl5").value = json.LeftEarBoneMaskedHearingLevel.split(",")[4]
+
+                        document.getElementById("AU_r_freq1").value = json.RightEarAirUnmaskedFrequecy.split(",")[0]
+                        document.getElementById("AU_r_freq2").value = json.RightEarAirUnmaskedFrequecy.split(",")[1]
+                        document.getElementById("AU_r_freq3").value = json.RightEarAirUnmaskedFrequecy.split(",")[2]
+                        document.getElementById("AU_r_freq4").value = json.RightEarAirUnmaskedFrequecy.split(",")[3]
+                        document.getElementById("AU_r_freq5").value = json.RightEarAirUnmaskedFrequecy.split(",")[4]
+
+                        document.getElementById("AU_r_hl1").value = json.RightEarAirUnmaskedHearingLevel.split(",")[0]
+                        document.getElementById("AU_r_hl2").value = json.RightEarAirUnmaskedHearingLevel.split(",")[1]
+                        document.getElementById("AU_r_hl3").value = json.RightEarAirUnmaskedHearingLevel.split(",")[2]
+                        document.getElementById("AU_r_hl4").value = json.RightEarAirUnmaskedHearingLevel.split(",")[3]
+                        document.getElementById("AU_r_hl5").value = json.RightEarAirUnmaskedHearingLevel.split(",")[4]
+
+                        document.getElementById("BM_r_freq1").value = json.RightEarBoneMaskedFrequecy.split(",")[0]
+                        document.getElementById("BM_r_freq2").value = json.RightEarBoneMaskedFrequecy.split(",")[1]
+                        document.getElementById("BM_r_freq3").value = json.RightEarBoneMaskedFrequecy.split(",")[2]
+                        document.getElementById("BM_r_freq4").value = json.RightEarBoneMaskedFrequecy.split(",")[3]
+                        document.getElementById("BM_r_freq5").value = json.RightEarBoneMaskedFrequecy.split(",")[4]
+
+                        document.getElementById("BM_r_hl1").value = json.RightEarBoneMaskedHearingLevel.split(",")[0]
+                        document.getElementById("BM_r_hl2").value = json.RightEarBoneMaskedHearingLevel.split(",")[1]
+                        document.getElementById("BM_r_hl3").value = json.RightEarBoneMaskedHearingLevel.split(",")[2]
+                        document.getElementById("BM_r_hl4").value = json.RightEarBoneMaskedHearingLevel.split(",")[3]
+                        document.getElementById("BM_r_hl5").value = json.RightEarBoneMaskedHearingLevel.split(",")[4]
+                    }
+                    else {
+                        alert("No Record Found!!")
+                        location.reload()
+                    }
+                }
+            })
+    }
+
+</script>

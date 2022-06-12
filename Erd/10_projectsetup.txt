@@ -1,0 +1,14 @@
+Ok abb ismai proper entires krain in each column picture ko null rhnae dain
+ Gender F capital 
+Nic  mai 5 digit ky bad -
+ Dob mai phly year then month then day
+ Rank nill
+ Contact no 11 digit ka
+ Designation  mai Admin
+: State Sindh
+ Username apki choice  
+And passwords  8 alphanumeric
+ ~/ProjectData/3dd6567f64dd48883893dbbbf43b3341215531832.jpg
+ yah path copy krky picture mai paste krdain
+ Kabsay yehhi aaraha hai bolo
+ Ho hi nh raha

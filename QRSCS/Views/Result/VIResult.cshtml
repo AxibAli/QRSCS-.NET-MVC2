@@ -1,0 +1,585 @@
+﻿@model QRSCS.Models.VIResultDTO
+@{
+    ViewBag.Title = "VIResult";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<link href="~/Content/adminassets/resultstyle.css" rel="stylesheet" />
+<div>
+    <ul class="nav">
+        <li onclick="BMT()">Bi-Monthlys</li>
+        <li onclick="FT()">1st TERM</li>
+        <li onclick="ST()">2nd TERM</li>
+    </ul>
+</div>
+<div class="wrapper">
+    <div class="rec-prism">
+        <div class="face face-front">
+            <div class="content">
+                <h2>PROGRESS REPORT</h2>
+                @*<input type="number" placeholder="GR_NO" style="width:100px; float:right; margin-bottom:10px; height:100%"/>*@
+                @Html.TextBoxFor(x => x.biMonthlyModel.GR_NO, null, new { type = "number" })
+                <table>
+                    <thead>
+                        <tr>
+                            <th rowspan="2">S.NO.</th>
+                            <th rowspan="2" class="wide">Subjects</th>
+                            <th class="twide">
+                                @*<select>
+                                        <option>1st Bi-Monthly</option>
+                                        <option>2nd Bi-Monthly</option>
+                                        <option>3rd Bi-Monthly</option>
+                                        <option>4th Bi-Monthly</option>
+                                    </select>*@
+                                @Html.DropDownListFor(x => x.biMonthlyModel.Test_Type, new List<SelectListItem>
+                                    { new SelectListItem() { Text = "1st Bi-Monthly" },
+                                      new SelectListItem() { Text = "2nd Bi-Monthly" },
+                                      new SelectListItem() { Text = "3rd Bi-Monthly" },
+                                      new SelectListItem() { Text = "4th Bi-Monthly"}
+                                    })
+                                <br> Max-Marks:25
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Marks Obtained</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1.</td>
+                            <td class="tleft">English</td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.biMonthlyModel.English, null, new { type = "number" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2.</td>
+                            <td class="tleft">Urdu</td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.biMonthlyModel.Urdu, null, new { type = "number" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3.</td>
+                            <td class="tleft">Maths</td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.biMonthlyModel.Maths, null, new { type = "number" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4.</td>
+                            <td class="tleft">Science</td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.biMonthlyModel.Science, null, new { type = "number" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5.</td>
+                            <td class="tleft">Social Studies</td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.biMonthlyModel.Social_Studies, null, new { type = "number" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6.</td>
+                            <td class="tleft">Islamiat</td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.biMonthlyModel.Islamiat, null, new { type = "number" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>7.</td>
+                            <td class="tleft">Computer</td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.biMonthlyModel.Computer, null, new { type = "number" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8.</td>
+                            <td class="tleft">Speech</td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.biMonthlyModel.Speech, null, new { type = "number" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>9.</td>
+                            <td class="tleft">Language</td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.biMonthlyModel.Language, null, new { type = "number" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10.</td>
+                            <td class="tleft">Concepts</td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.biMonthlyModel.Concepts, null, new { type = "number" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11.</td>
+                            <td class="tleft">Art / Drawing</td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.biMonthlyModel.Art_and_Drawing, null, new { type = "number" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>12.</td>
+                            <td class="tleft">Sindhi</td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.biMonthlyModel.Sindhi, null, new { type = "number" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><strong>Total</strong></td>
+                            <td>@Html.TextBoxFor(x => x.biMonthlyModel.Obtained_Total, null, new { type = "number" })</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="BDM">
+                    <div class="percentage">
+                        <h3>Percentage:</h3>
+                        @*<input type="number" name="" value="">*@
+                        @Html.TextBoxFor(x => x.biMonthlyModel.Percentage, null, new { type = "number" })
+                    </div>
+                    <div class="percentage">
+                        <h3>Grade:</h3>
+                        @*<input type="text" name="" value="" id="per">*@
+                        @Html.TextBoxFor(x => x.biMonthlyModel.Grade, null, new { type = "text" })
+                    </div>
+                    <div class="percentage">
+                        <h3>Date:</h3>
+                        @*<input type="date" name="" value="">*@
+                        @Html.TextBoxFor(x => x.biMonthlyModel.Result_Date, null, new { type = "date" })
+                    </div>
+                    <div>
+                        <input type="button" value="SUBMIT" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="face face-right">
+            <div class="content">
+                <h1>FIRST TERM PROGRESS REPORT</h1>
+                <div class="prDiv">
+                    @*<label>GR_NO:</label>*@
+                    @*<input type="number" placeholder="GR_NO" style="width:100px;" />*@
+                    @*@Html.TextBoxFor(x => x.biMonthlyModel.GR_NO, null, new { type = "number" })*@
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th rowspan="2">S.NO.</th>
+                            <th rowspan="2" class="twide">Subjects</th>
+                            <th class="twide">1st <br> Bi-Monthly Test <br> Max-Marks:25</th>
+                            <th class="twide">2nd <br> Bi-Monthly Test <br> Max-Marks:25</th>
+                            <th class="twide">1st <br>Term Exam Test <br> Max-Marks:100</th>
+                            <th class="twide">Grand<br>Total:150</th>
+                            <th rowspan="2">40% Weightage of Total</th>
+                        </tr>
+                        <tr>
+                            <th>Marks Obtained</th>
+                            <th>Marks Obtained</th>
+                            <th>Marks Obtained</th>
+                            <th>Total Marks Obtained</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1.</td>
+                            <td class="tleft">English</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_English, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2.</td>
+                            <td class="tleft">Urdu</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Urdu, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3.</td>
+                            <td class="tleft">Maths</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Maths, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>4.</td>
+                            <td class="tleft">Science</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Science, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>5.</td>
+                            <td class="tleft">Social Studies</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Social_Studies, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>6.</td>
+                            <td class="tleft">Islamiat</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Islamiat, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>7.</td>
+                            <td class="tleft">Computer</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Computer, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>8.</td>
+                            <td class="tleft">Speech</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Speech, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>9.</td>
+                            <td class="tleft">Language</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Language, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>10.</td>
+                            <td class="tleft">Concepts</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Concepts, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>11.</td>
+                            <td class="tleft">Art / Drawing</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Art_and_Drawing, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>12.</td>
+                            <td class="tleft">Sindhi</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Sindhi, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><strong>Total</strong></td>
+                            <td></td>
+                            <td></td>
+                            <td>@Html.TextBoxFor(x => x.finalResultModel.Grand_Total, null, new { type = "number" })</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <div class="percentage">
+                        <h3>Percentage:</h3>
+                        @*<input type="number" name="" value="">*@
+                        @Html.TextBoxFor(x => x.finalResultModel.Percentage, null, new { type = "number" })
+                    </div>
+                    <div class="percentage">
+                        <h3>Grade:</h3>
+                        @*<input type="text" name="" value="" id="per">*@
+                        @Html.TextBoxFor(x => x.finalResultModel.Grade, null, new { type = "text" })
+                    </div>
+                    <div class="percentage">
+                        <h3>Date:</h3>
+                        @Html.TextBoxFor(x => x.finalResultModel.Result_Date, null, new { type = "date" })
+                    </div>
+                    <div class="prBtn">
+                        <input type="button" value="SUBMIT" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="face face-left">
+            <div class="content">
+                <h1>SECOND TERM PROGRESS REPORT</h1>
+                <div class="prDiv">
+                    @*<label>GR_NO:</label>*@
+                    @*<input type="number" placeholder="GR_NO" style="width:100px;" />*@
+                    @*@Html.TextBoxFor(x => x.finalResultModel.GR_NO, null, new { type = "number" })*@
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th rowspan="2">S.NO.</th>
+                            <th rowspan="2" class="twide">Subjects</th>
+                            <th class="twide">3rd <br> Bi-Monthly Test <br> Max-Marks:25</th>
+                            <th class="twide">4th <br> Bi-Monthly Test <br> Max-Marks:25</th>
+                            <th class="twide">2nd <br>Term Exam Test <br> Max-Marks:100</th>
+                            <th class="twide">Grand<br>Total:150</th>
+                            <th rowspan="2">40% Weightage of Total</th>
+                        </tr>
+                        <tr>
+                            <th>Marks Obtained</th>
+                            <th>Marks Obtained</th>
+                            <th>Marks Obtained</th>
+                            <th>Total Marks Obtained</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1.</td>
+                            <td class="tleft">English</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_English, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2.</td>
+                            <td class="tleft">Urdu</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Urdu, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3.</td>
+                            <td class="tleft">Maths</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Maths, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>4.</td>
+                            <td class="tleft">Science</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Science, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>5.</td>
+                            <td class="tleft">Social Studies</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Social_Studies, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>6.</td>
+                            <td class="tleft">Islamiat</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Islamiat, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>7.</td>
+                            <td class="tleft">Computer</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Computer, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>8.</td>
+                            <td class="tleft">Speech</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Speech, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>9.</td>
+                            <td class="tleft">Language</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Language, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>10.</td>
+                            <td class="tleft">Concepts</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Concepts, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>11.</td>
+                            <td class="tleft">Art / Drawing</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Art_and_Drawing, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>12.</td>
+                            <td class="tleft">Sindhi</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @*<input type="number" name="" value="">*@
+                                @Html.TextBoxFor(x => x.finalResultModel.Grand_Sindhi, null, new { type = "number" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><strong>Total</strong></td>
+                            <td></td>
+                            <td></td>
+                            <td>@Html.TextBoxFor(x => x.finalResultModel.Grand_Total, null, new { type = "number" })</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <div class="percentage">
+                        <h3>Percentage:</h3>
+                        @*<input type="number" name="" value="">*@
+                        @Html.TextBoxFor(x => x.finalResultModel.Percentage, null, new { type = "number" })
+                    </div>
+                    <div class="percentage">
+                        <h3>Grade:</h3>
+                        @*<input type="text" name="" value="" id="per">*@
+                        @Html.TextBoxFor(x => x.finalResultModel.Grade, null, new { type = "text" })
+                    </div>
+                    <div class="percentage">
+                        <h3>Date:</h3>
+                        @*<input type="date" name="" value="">*@
+                        @Html.TextBoxFor(x => x.finalResultModel.Result_Date, null, new { type = "date" })
+                    </div>
+                    <div class="prBtn">
+                        <input type="button" value="SUBMIT" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script src="~/Content/adminassets/script.js"></script>
+
