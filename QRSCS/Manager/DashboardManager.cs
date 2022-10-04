@@ -16,22 +16,22 @@ namespace QRSCS_Database
         public class DashboardManager
         {
             private QRSCS_DatabaseEntities db = new QRSCS_DatabaseEntities();
-            public DashboardModel Cards(DashboardModel dm)
+            public DashboardDTOModel Cards(DashboardDTOModel dm)
             {
-                dm.total_users = db.Users.Count();
-                dm.total_teachers = db.Create_Teacher.Count();
-                dm.total_students = db.New_Admission.Count();
-                dm.total_IEP = db.IEPlans.Count();
+                dm.DashboardModel.total_users = db.Users.Count();
+                dm.DashboardModel.total_teachers = db.Create_Teacher.Count();
+                dm.DashboardModel.total_students = db.New_Admission.Count();
+                dm.DashboardModel.total_IEP = db.IEPlans.Count();
 
                 var hi = db.New_Admission.Where(x => x.Disability == "H.I").Count();
                 var vi = db.New_Admission.Where(x => x.Disability == "V.I").Count();
                 var idd = db.New_Admission.Where(x => x.Disability == "I.D.D").Count();
                 var deact = db.Users.Where(x => x.IsActive == false).Count();
 
-                dm.total_histudents = hi;
-                dm.total_vistudents = vi;
-                dm.total_iddstudents = idd;
-                dm.total_deactivated_users = deact;
+                dm.DashboardModel.total_histudents = hi;
+                dm.DashboardModel.total_vistudents = vi;
+                dm.DashboardModel.total_iddstudents = idd;
+                dm.DashboardModel.total_deactivated_users = deact;
                 return dm;
             }
         }

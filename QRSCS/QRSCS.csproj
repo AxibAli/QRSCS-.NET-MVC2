@@ -148,6 +148,7 @@
     <Compile Include="Common\CaseHistory\PostNatalModel.cs" />
     <Compile Include="Common\CaseHistory\PsychoSocialFactorModel.cs" />
     <Compile Include="Common\CaseHistory\RecommendationModel.cs" />
+    <Compile Include="Models\DashboardDTOModel.cs" />
     <Compile Include="Common\FinalResult\FinalResultModel.cs" />
     <Compile Include="Common\IEP\DevelopmentTeamIEPModel.cs" />
     <Compile Include="Common\IEP\IEPlanModel.cs" />
@@ -279,7 +280,7 @@
     <Compile Include="Models\ConductProcessing_OT2.cs">
       <DependentUpon>QRSCS_DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DashboardModel.cs" />
+    <Compile Include="Common\Dashboard\DashboardModel.cs" />
     <Compile Include="Models\CaseHistoryModelDTO.cs" />
     <Compile Include="Models\Case_History.cs">
       <DependentUpon>QRSCS_DatabaseModel.tt</DependentUpon>
@@ -523,6 +524,7 @@
     <Content Include="Content\adminassets\js\calendarview.js" />
     <Content Include="Content\adminassets\js\jotform.js" />
     <Content Include="Content\adminassets\js\location.js" />
+    <Content Include="Content\adminassets\js\profile.js" />
     <Content Include="Content\adminassets\js\protoplus-ui-form.js" />
     <Content Include="Content\adminassets\js\protoplus.js" />
     <Content Include="Content\adminassets\js\prototype.js" />
@@ -590,6 +592,7 @@
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.css" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\QRSCS_DatabaseModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -604,6 +607,7 @@
     <Content Include="Content\adminassets\assets\vendors\themify\fonts\themify9f24.woff" />
     <Content Include="Content\adminassets\assets\vendors\themify\fonts\themifyd41d.eot" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="Scripts\jquery-3.6.0.slim.js" />

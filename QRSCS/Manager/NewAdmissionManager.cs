@@ -51,10 +51,10 @@ namespace QRSCS.Manager
             return grno;
         }
 
-        internal DashboardModel GetStudent(object gR_NO)
-        {
-            throw new NotImplementedException();
-        }
+        //internal DashboardDTOModel GetStudent(object gR_NO)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public NewAdmissionModel GetStudent(int GR_NO)
         {

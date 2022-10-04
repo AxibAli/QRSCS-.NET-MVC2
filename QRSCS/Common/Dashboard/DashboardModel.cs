@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace QRSCS.Models
+namespace QRSCS.Common.Dashboard
 {
     public class DashboardModel
     {

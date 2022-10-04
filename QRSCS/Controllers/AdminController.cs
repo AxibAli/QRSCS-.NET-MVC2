@@ -8,6 +8,7 @@ using QRSCS.Manager;
 using QRSCS.Filters;
 using System.IO;
 using QRSCS_Database.QRSCS.Manager;
+using Newtonsoft.Json;
 
 namespace QRSCS_Database
 {
@@ -15,7 +16,7 @@ namespace QRSCS_Database
     public class AdminController : Controller
     {
 
-        public ActionResult Index(DashboardModel dbm)
+        public ActionResult Index(DashboardDTOModel dbm)
         {
             DashboardManager obj = new DashboardManager();
             var request = obj.Cards(dbm);
@@ -118,6 +119,7 @@ namespace QRSCS_Database
         {
             CreateUserManager obj = new CreateUserManager();
             CreateUserModel user = obj.GetUser(User_ID);
+            
             if (user == null)
             {
                 TempData["Message"] = "Data not Found";
@@ -128,6 +130,20 @@ namespace QRSCS_Database
             {
                 return View(user);
             }
+        }
+
+        public JsonResult UpdateUserProfile(int User_ID)
+        {
+            CreateUserManager obj = new CreateUserManager();
+            CreateUserModel user = obj.GetUser(User_ID);
+           
+            string value = string.Empty;
+            value = JsonConvert.SerializeObject(user, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            });
+            return Json(value, JsonRequestBehavior.AllowGet);
+
         }
 
 
