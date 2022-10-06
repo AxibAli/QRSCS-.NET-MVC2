@@ -1,5 +1,4 @@
-﻿@model QRSCS.Models.DashboardDTOModel
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -470,15 +469,15 @@
                 <div class="modal-body">
                     <p>One fine body…</p>
                     <form id="form">
-                        @Html.TextBoxFor(x => x.Full_Name, null, new { @Class = "form-control", placeholder = "User's Full Name" })
-                        @Html.ValidationMessageFor(x => x.Full_Name, null, new { style = "color:red" })
+                       @* @Html.TextBoxFor(x => x.Full_Name, null, new { @Class = "form-control", placeholder = "User's Full Name" })*@
+                       @* @Html.ValidationMessageFor(x => x.Full_Name, null, new { style = "color:red" })*@
 
                     </form>
                     <form id="form">
                         <fieldset id="SubmitForm">
-                            @Html.TextBoxFor(x => x.Full_Name, null, new { @Class = "form-control", placeholder = "User's Full Name" })
-                            @Html.ValidationMessageFor(x => x.Full_Name, null, new { style = "color:red" })
-                            @Html.TextBoxFor(m => m.Full_Name, new { @id = "Full_Name" })
+                         @*   @Html.TextBoxFor(x => x.Full_Name, null, new { @Class = "form-control", placeholder = "User's Full Name" })*@
+                          @*  @Html.ValidationMessageFor(x => x.Full_Name, null, new { style = "color:red" })*@
+                           @* @Html.TextBoxFor(m => m.Full_Name, new { @id = "Full_Name" })*@
                             <div class="form-group">
                                 @* @Html.TextBoxFor(m => m.StudentName, new { @id = "StuName", @class = "form-control", @placeholder = "Name*" })*@
                             </div>

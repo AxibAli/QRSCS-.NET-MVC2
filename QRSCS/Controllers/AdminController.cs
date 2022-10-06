@@ -7,7 +7,6 @@ using QRSCS.Models;
 using QRSCS.Manager;
 using QRSCS.Filters;
 using System.IO;
-using QRSCS_Database.QRSCS.Manager;
 using Newtonsoft.Json;
 
 namespace QRSCS_Database
@@ -16,7 +15,7 @@ namespace QRSCS_Database
     public class AdminController : Controller
     {
 
-        public ActionResult Index(DashboardDTOModel dbm)
+        public ActionResult Index(DashboardModel dbm)
         {
             DashboardManager obj = new DashboardManager();
             var request = obj.Cards(dbm);

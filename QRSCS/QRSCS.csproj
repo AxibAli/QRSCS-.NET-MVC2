@@ -148,7 +148,6 @@
     <Compile Include="Common\CaseHistory\PostNatalModel.cs" />
     <Compile Include="Common\CaseHistory\PsychoSocialFactorModel.cs" />
     <Compile Include="Common\CaseHistory\RecommendationModel.cs" />
-    <Compile Include="Models\DashboardDTOModel.cs" />
     <Compile Include="Common\FinalResult\FinalResultModel.cs" />
     <Compile Include="Common\IEP\DevelopmentTeamIEPModel.cs" />
     <Compile Include="Common\IEP\IEPlanModel.cs" />
@@ -280,7 +279,7 @@
     <Compile Include="Models\ConductProcessing_OT2.cs">
       <DependentUpon>QRSCS_DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Common\Dashboard\DashboardModel.cs" />
+    <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\CaseHistoryModelDTO.cs" />
     <Compile Include="Models\Case_History.cs">
       <DependentUpon>QRSCS_DatabaseModel.tt</DependentUpon>
@@ -667,6 +666,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Common\Dashboard\" />
     <Folder Include="Content\assetstable\vendor\fontawesome-free\js\" />
     <Folder Include="Content\assetstable\vendor\fontawesome-free\less\" />
     <Folder Include="Content\assetstable\vendor\fontawesome-free\metadata\" />
