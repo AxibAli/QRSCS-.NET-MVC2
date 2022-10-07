@@ -523,6 +523,7 @@
     <Content Include="Content\adminassets\js\calendarview.js" />
     <Content Include="Content\adminassets\js\jotform.js" />
     <Content Include="Content\adminassets\js\location.js" />
+    <Content Include="Content\adminassets\js\profile.js" />
     <Content Include="Content\adminassets\js\protoplus-ui-form.js" />
     <Content Include="Content\adminassets\js\protoplus.js" />
     <Content Include="Content\adminassets\js\prototype.js" />
@@ -604,6 +605,7 @@
     <Content Include="Content\adminassets\assets\vendors\themify\fonts\themify9f24.woff" />
     <Content Include="Content\adminassets\assets\vendors\themify\fonts\themifyd41d.eot" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="Scripts\jquery-3.6.0.slim.js" />
