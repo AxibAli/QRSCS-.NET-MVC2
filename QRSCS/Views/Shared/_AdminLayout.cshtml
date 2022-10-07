@@ -18,10 +18,9 @@
     @*<link rel="stylesheet" type="text/css" href="~/Content/adminassets/assets/css/assets.css">*@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     @Styles.Render("~/bundles/css")
-    @Scripts.Render("~/bundle/js")
 
     @* IDD StyleSheet *@
-    @*<link href="~/Content/IDDcss/IDD.css" rel="stylesheet" />*@
+    <link href="~/Content/IDDcss/IDD.css" rel="stylesheet" />
 
 
     <style>
@@ -230,7 +229,7 @@
                     <div class="ttr-header-submenu">
                         <ul>
                             <li>
-                                <button id="prof" value="@Session["User_ID"]" class="dropdown-item" data-toggle="modal" onclick="EditUserRecord(@Session["User_ID"])">
+                                <button id="prof" value="@Session["User_ID"]" class="dropdown-item" data-toggle="modal">
                                     <i class="fas far fa-user"></i>
                                     My Profile
                                 </button>
@@ -459,7 +458,7 @@
     <!-- Profile Modal-->
     <div class="modal fade" id="MyModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" >
                 <div class="modal-header">
                     <h5 class="modal-title" id="ModalTitle"></h5>
                     <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
@@ -468,40 +467,120 @@
                 </div>
 
                 <div class="modal-body">
-                    <p>One fine body…</p>
-                    <form id="form">
-                       @* @Html.TextBoxFor(x => x.Full_Name, null, new { @Class = "form-control", placeholder = "User's Full Name" })*@
-                       @* @Html.ValidationMessageFor(x => x.Full_Name, null, new { style = "color:red" })*@
+                    <div class="col-sm-4 m-auto ">
+                        <div class="form-group row">
+                            <div class="circle">
+                                <!-- User Profile Image -->
+                                <img id="pics" class="profile-pic" src="@Url.Content(Session["UserImage"].ToString())">
 
-                    </form>
-                    <form id="form">
-                        <fieldset id="SubmitForm">
-                         @*   @Html.TextBoxFor(x => x.Full_Name, null, new { @Class = "form-control", placeholder = "User's Full Name" })*@
-                          @*  @Html.ValidationMessageFor(x => x.Full_Name, null, new { style = "color:red" })*@
-                           @* @Html.TextBoxFor(m => m.Full_Name, new { @id = "Full_Name" })*@
-                            <div class="form-group">
-                                @* @Html.TextBoxFor(m => m.StudentName, new { @id = "StuName", @class = "form-control", @placeholder = "Name*" })*@
+                                <!-- Default Image -->
+                                <!-- <i class="fa fa-user fa-5x"></i> -->
                             </div>
-                            <div class="form-group">
-                                @* @Html.TextBoxFor(m => m.Email, new { @id = "Email", @class = "form-control", @placeholder = "Email*" })*@
-                            </div>
-                            <div class="form-group">
-
-                                @*@Html.DropDownListFor(m => m.DeptID, ViewBag.ListOfDept as SelectList, "--Select--", new
-                                    {
-                                            @id = "Dropdwn",
-                                                 @class = "form-control"
-                                        })*@
-                            </div>
-                            <div class="form-group">
-
-                                <a href="#" class="btn btn-block btn-danger" id="SaveStudent">Save</a>
+                            <div class="p-image">
+                                <i class="fa fa-camera upload-button"></i>
+                                <input class="file-upload" type="file" name="ImageFile" accept="image/*" id="file" />
                             </div>
 
-                        </fieldset>
-                    </form>
+                        </div>
+
+                    </div>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="Full_Name">Full Name:</label>
+                        <input type="text" id="Full_Name">
+
+                    </div>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="Father_Name">Father Name:</label>
+                        <input type="text" id="Father_Name">
+
+                    </div>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="NIC">NIC#:</label>
+                        <input type="text" id="NIC">
+
+                    </div>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="Gen">Gender:</label>
+
+                        <select name="Gender" id="Gen" style="width:100% ;height:40px">
+
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="Date_of_Birth">Date of Birth:</label>
+                        <input type="date" id="Date_of_Birth">
+
+                    </div>
+
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="Contact">Contact:</label>
+                        <input type="text" id="Contact">
+
+                    </div>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="Rank">Rank:</label>
+                        <input type="text" id="Rank">
+
+                    </div>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="Designation">Designation:</label>
+
+                        <select name="Designation" id="Designation" style="width: 100%; height: 40px">
+
+                            <option value="Admin">Admin</option>
+
+                        </select>
+                    </div>
+
+                    <Center><h5>Address:</h5></Center>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="Address">Address:</label>
+                        <input type="text" id="Address">
+
+                    </div>
+
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="City">City:</label>
+                        <input type="text" id="City">
+
+                    </div>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="State">State:</label>
+
+                        <select name="State" id="State" style="width: 100%; height: 40px">
+
+                            <option value="Sindh">
+                                Sindh
+                            </option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Balochistan">Balochistan</option>
+                            <option value="KP">KP</option>
+                            <option value="GB">GB</option>
+                        </select>
+                    </div>
+
+                    <center><h5>Create Username and Password:</h5></center>
+
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="username">User Name</label>
+
+                        <input type="text" id="username">
+
+                    </div>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="Passwprd">Password</label>
+
+                        <input type="text" id="Password" />
+
+                    </div>
+                    <div class="form-group row" style="padding-left: 20px">
+                            <button id="saverecord" type="submit"  class="btn">Update changes</button>
+
+                    </div>
                 </div>
-            </div>
+                </div>
         </div>
 
     </div>
@@ -527,36 +606,30 @@
         </div>
     </div>
 
-     External JavaScripts 
-     @*Dropdown 
+    <!-- External JavaScripts -->
+    @* Dropdown *@
     <script src="~/Content/adminassets/assets/vendors/JotForm/jquery.min.js"></script>
-    <script src="~/Content/adminassets/assets/js/jquery.min.js"></script>
-        <script src="~/Content/adminassets/assets/vendors/owl-carousel/owl.carousel.js"></script
+    @*<script src="~/Content/adminassets/assets/js/jquery.min.js"></script>
+        <script src="~/Content/adminassets/assets/vendors/owl-carousel/owl.carousel.js"></script*@
     <script src="~/Content/adminassets/assets/js/admin.js"></script>
-     Card 
+    @* Card *@
     <script src="~/Content/adminassets/assets/vendors/counter/counterup.min.js"></script>
     <script src="~/Content/adminassets/assets/vendors/counter/waypoints-min.js"></script>
     <script src="~/Content/adminassets/assets/js/functions.js"></script>
-     POP-UP 
+    @* POP-UP *@
     <script src="~/Content/adminassets/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-     Chart  
+    @* Chart  *@
     <script src="~/Content/adminassets/assets/vendors/chart/chart.min.js"></script>
 
-     pdf csv print 
-    <script src="~/Content/assetstable/Printtable.js"></script>*@
+    @* pdf csv print *@
+    <script src="~/Content/assetstable/Printtable.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
 
 
-    @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Content/adminassets/js/profile.js"></script>*@
-    <script>
-        function EditUserRecord(a) {
-            var CompanyIdVal = a;
-            var url = "/Home/GetStudentById?StudentId=";
-            $("#ModalTitle").html("Update Student");
-            $("#MyModal").modal();
+    <script src="~/Content/adminassets/js/profile.js"></script>
 
         }
     </script>
@@ -570,5 +643,44 @@
             }
         </script>
     }
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            var readURL = function (input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('.profile-pic').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+
+            $(".file-upload").on('change', function () {
+                readURL(this);
+            });
+
+            $(".upload-button").on('click', function () {
+                $(".file-upload").click();
+            });
+        });
+
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password1');
+        togglePassword.addEventListener('click', function (f) {
+            // toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            // toggle the eye / eye slash icon
+            this.classList.toggle('bi-eye');
+        });
+
+    </script>
 </body>
 </html>
