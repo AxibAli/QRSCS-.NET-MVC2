@@ -18,9 +18,10 @@
     @*<link rel="stylesheet" type="text/css" href="~/Content/adminassets/assets/css/assets.css">*@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundle/js")
 
     @* IDD StyleSheet *@
-    <link href="~/Content/IDDcss/IDD.css" rel="stylesheet" />
+    @*<link href="~/Content/IDDcss/IDD.css" rel="stylesheet" />*@
 
 
     <style>
@@ -526,30 +527,30 @@
         </div>
     </div>
 
-    <!-- External JavaScripts -->
-    @* Dropdown *@
+     External JavaScripts 
+     @*Dropdown 
     <script src="~/Content/adminassets/assets/vendors/JotForm/jquery.min.js"></script>
-    @*<script src="~/Content/adminassets/assets/js/jquery.min.js"></script>
-        <script src="~/Content/adminassets/assets/vendors/owl-carousel/owl.carousel.js"></script*@
+    <script src="~/Content/adminassets/assets/js/jquery.min.js"></script>
+        <script src="~/Content/adminassets/assets/vendors/owl-carousel/owl.carousel.js"></script
     <script src="~/Content/adminassets/assets/js/admin.js"></script>
-    @* Card *@
+     Card 
     <script src="~/Content/adminassets/assets/vendors/counter/counterup.min.js"></script>
     <script src="~/Content/adminassets/assets/vendors/counter/waypoints-min.js"></script>
     <script src="~/Content/adminassets/assets/js/functions.js"></script>
-    @* POP-UP *@
+     POP-UP 
     <script src="~/Content/adminassets/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-    @* Chart  *@
+     Chart  
     <script src="~/Content/adminassets/assets/vendors/chart/chart.min.js"></script>
 
-    @* pdf csv print *@
-    <script src="~/Content/assetstable/Printtable.js"></script>
+     pdf csv print 
+    <script src="~/Content/assetstable/Printtable.js"></script>*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
 
 
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Content/adminassets/js/profile.js"></script>
+    <script src="~/Content/adminassets/js/profile.js"></script>*@
     <script>
         function EditUserRecord(a) {
             var CompanyIdVal = a;
