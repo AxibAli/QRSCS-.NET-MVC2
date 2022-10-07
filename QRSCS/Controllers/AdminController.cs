@@ -7,7 +7,6 @@ using QRSCS.Models;
 using QRSCS.Manager;
 using QRSCS.Filters;
 using System.IO;
-using QRSCS_Database.QRSCS.Manager;
 using Newtonsoft.Json;
 using System.Data.Entity;
 using System.Diagnostics;
@@ -209,38 +208,42 @@ namespace QRSCS_Database
             Session.Clear();
             return RedirectToAction("Login", "Login");
         }
-        public JsonResult SaveDataInDatabase(CreateUserModel user)
+        public JsonResult SaveDataInDatabase(CreateUserModel user, HttpPostedFileBase ImageFile)
         {
-            if (user is null)
-            {
-                throw new ArgumentNullException(nameof(user));
-            }
+
+            Debug.WriteLine(user.UserName);
+            Debug.WriteLine(ImageFile);
+
+            //if (user is null)
+            //{
+            //    throw new ArgumentNullException(nameof(user));
+            //}
 
             bool check = false;
-            Debug.WriteLine("debug information");
-            try
-            {
-                if (user.Picture != null) {
-                    Debug.WriteLine("debug information----");
-                    string Filename = Path.GetFileNameWithoutExtension(user.Picture);
-                    string Extension = Path.GetExtension(user.Picture);
-                    Filename = Filename + DateTime.Now.ToString("yymmssfff") + Extension;
-                    user.Picture = "~/ProjectData/" + Filename;
+            //Debug.WriteLine("debug information");
+            //try
+            //{
+            //    if (user.Picture != null) {
+            //        Debug.WriteLine("debug information----");
+            //        string Filename = Path.GetFileNameWithoutExtension(user.Picture);
+            //        string Extension = Path.GetExtension(user.Picture);
+            //        Filename = Filename + DateTime.Now.ToString("yymmssfff") + Extension;
+            //        user.Picture = "~/ProjectData/" + Filename;
                     
 
-                }
+            //    }
 
-                CreateUserManager obj = new CreateUserManager();
-                user.Updated_By = Convert.ToString(Session["User_ID"]);
-                user.Update_Date = DateTime.Now;
-                user.Picture = "c:\\users\\daniy\\desktop\\version1\\version2\\qrscs-.net-mvc\\qrscs\\projectdata\\whatsapp image 2020-03-21 at 1.27.11 am211743849.jpg";
-                check = obj.UpdateUser(user);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("This is C#");
-                throw ex;
-            }
+            //    CreateUserManager obj = new CreateUserManager();
+            //    user.Updated_By = Convert.ToString(Session["User_ID"]);
+            //    user.Update_Date = DateTime.Now;
+            //    user.Picture = "c:\\users\\daniy\\desktop\\version1\\version2\\qrscs-.net-mvc\\qrscs\\projectdata\\whatsapp image 2020-03-21 at 1.27.11 am211743849.jpg";
+            //    check = obj.UpdateUser(user);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("This is C#");
+            //    throw ex;
+            //}
 
 
             return Json(check, JsonRequestBehavior.AllowGet);

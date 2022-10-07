@@ -9,7 +9,7 @@
             url: url,
 
             success: function (data) {
-                var obj = JSON.parse(data);                
+                var obj = JSON.parse(data);
                 $("#Full_Name").val(obj.Full_Name);
                 $("#Father_Name").val(obj.Father_Name);
                 $("#NIC").val(obj.NIC);              
@@ -29,34 +29,37 @@
 
             }
         })
-    });
+        });
 
     $("#saverecord").click(function () {
         alert($('#pics').attr('src'));
-        var data = {
+        var data1 = {
             User_ID: $("#prof").val(),
-            Full_Name:$("#Full_Name").val(),
-            Father_Name:$("#Father_Name").val(),
-            NIC:$("#NIC").val(),
+            Full_Name: $("#Full_Name").val(),
+            Father_Name: $("#Father_Name").val(),
+            NIC: $("#NIC").val(),
             Gender: $("#Gen").val(),
-            DOB:$("#Date_of_Birth").val(),
-            Contact_Number:$("#Contact").val(),
-            Rank:$("#Rank").val(),
-            Desigation_Role:$("#Designation").val(),
-            Address:$("#Address").val(),
-            City:$("#City").val(),
-            State:$("#State").val(),
-            UserName:$("#username").val(),
+            DOB: $("#Date_of_Birth").val(),
+            Contact_Number: $("#Contact").val(),
+            Rank: $("#Rank").val(),
+            Desigation_Role: $("#Designation").val(),
+            Address: $("#Address").val(),
+            City: $("#City").val(),
+            State: $("#State").val(),
+            UserName: $("#username").val(),
             Password: $("#Password").val(),
-            Picture: $('#pics').attr('src')
 
-        }
+
+        };
+        var data2 = $('#pics').attr('src');
+
+
 
  
         $.ajax({
             type: "Post",
             url: "/Admin/SaveDataInDatabase",
-            data: data,
+            data: { data1: data1, data2: data2 },
             success: function (result) {
                 alert("Successfully Updated....");
                 window.location.href = "/Admin/Index";
@@ -64,4 +67,4 @@
             }
         })
     })
-});
+        });
