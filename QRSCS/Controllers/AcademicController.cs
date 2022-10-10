@@ -7,7 +7,6 @@ using QRSCS.Models;
 using QRSCS.Manager;
 using QRSCS.Filters;
 using System.IO;
-using QRSCS_Database.QRSCS.Manager;
 
 namespace QRSCS_Database
 {

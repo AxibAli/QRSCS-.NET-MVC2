@@ -18,8 +18,8 @@ namespace QRSCS.Models
         public string Father_Name { get; set; }
 
         [Required]
-        [MaxLength(14, ErrorMessage = "Enter a valid NIC of 14 Digits")]
-        [MinLength(14, ErrorMessage = "Enter a valid NIC of 14 Digits")]
+        [MaxLength(15, ErrorMessage = "Enter a valid NIC of 15 Digits")]
+        [MinLength(15, ErrorMessage = "Enter a valid NIC of 15 Digits")]
         public string NIC { get; set; }
 
         [Required(ErrorMessage = "Kindly Select a Gender?")]

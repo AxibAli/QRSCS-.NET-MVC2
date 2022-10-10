@@ -148,7 +148,6 @@
     <Compile Include="Common\CaseHistory\PostNatalModel.cs" />
     <Compile Include="Common\CaseHistory\PsychoSocialFactorModel.cs" />
     <Compile Include="Common\CaseHistory\RecommendationModel.cs" />
-    <Compile Include="Models\DashboardDTOModel.cs" />
     <Compile Include="Common\FinalResult\FinalResultModel.cs" />
     <Compile Include="Common\IEP\DevelopmentTeamIEPModel.cs" />
     <Compile Include="Common\IEP\IEPlanModel.cs" />
@@ -280,7 +279,7 @@
     <Compile Include="Models\ConductProcessing_OT2.cs">
       <DependentUpon>QRSCS_DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Common\Dashboard\DashboardModel.cs" />
+    <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\CaseHistoryModelDTO.cs" />
     <Compile Include="Models\Case_History.cs">
       <DependentUpon>QRSCS_DatabaseModel.tt</DependentUpon>
@@ -564,6 +563,32 @@
     <Content Include="Content\assetstable\vendor\fontawesome-free\LICENSE.txt" />
     <Content Include="Content\assetstable\vendor\jquery\jquery.min.js" />
     <Content Include="Content\IDDcss\IDD.css" />
+    <Content Include="Content\JavaScript\AllStudentsView.js" />
+    <Content Include="Content\JavaScript\AudiologyAssessment.js" />
+    <Content Include="Content\JavaScript\BT.js" />
+    <Content Include="Content\JavaScript\CaseHistory.js" />
+    <Content Include="Content\JavaScript\CreateTeacher.js" />
+    <Content Include="Content\JavaScript\CreateUser.js" />
+    <Content Include="Content\JavaScript\HIResult.js" />
+    <Content Include="Content\JavaScript\IDDResult.js" />
+    <Content Include="Content\JavaScript\IEP.js" />
+    <Content Include="Content\JavaScript\IQ.js" />
+    <Content Include="Content\JavaScript\NewAdmission.js" />
+    <Content Include="Content\JavaScript\OT.js" />
+    <Content Include="Content\JavaScript\OT2.js" />
+    <Content Include="Content\JavaScript\PA.js" />
+    <Content Include="Content\JavaScript\Performance.js" />
+    <Content Include="Content\JavaScript\performance1.js" />
+    <Content Include="Content\JavaScript\PT.js" />
+    <Content Include="Content\JavaScript\Result.js" />
+    <Content Include="Content\JavaScript\SpeechCaseHistory.js" />
+    <Content Include="Content\JavaScript\SpeechTherapyAssessment.js" />
+    <Content Include="Content\JavaScript\UpdateIEP.js" />
+    <Content Include="Content\JavaScript\UpdateTeacher.js" />
+    <Content Include="Content\JavaScript\UpdateUser.js" />
+    <Content Include="Content\JavaScript\ViewAllIEP.js" />
+    <Content Include="Content\JavaScript\ViewAllUser.js" />
+    <Content Include="Content\JavaScript\VIResult.js" />
     <Content Include="Content\loginassets\css\app.css" />
     <Content Include="Content\loginassets\css\bckg.jpeg" />
     <Content Include="Content\loginassets\css\style.css" />
@@ -667,6 +692,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Common\Dashboard\" />
     <Folder Include="Content\assetstable\vendor\fontawesome-free\js\" />
     <Folder Include="Content\assetstable\vendor\fontawesome-free\less\" />
     <Folder Include="Content\assetstable\vendor\fontawesome-free\metadata\" />
