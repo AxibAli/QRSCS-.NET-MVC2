@@ -227,7 +227,7 @@
             <!-- header right menu start -->
             <ul class="ttr-header-navigation">
                 <li>
-                    <a href="#" class="ttr-material-button ttr-submenu-toggle" style="height:70px;"><span class="nameandpic"><span class="ttr-user-avatar"><img alt="" src="@Url.Content(Session["UserImage"].ToString())" width="45" height="45"></span><span style="margin-top:12px !important; margin-left:10px !important;">@Session["Full_Name"]</span></span></a>
+                    <a href="#" class="ttr-material-button ttr-submenu-toggle" style="height:70px;"><span class="nameandpic"><span class="ttr-user-avatar"><img alt="" src="@Url.Content(Session["UserImage"].ToString())" style="width : 100%; height:100%; " ></span><span style="margin-top:12px !important; margin-left:10px !important;">@Session["Full_Name"]</span></span></a>
                     <div class="ttr-header-submenu">
                         <ul>
                             <li>
@@ -251,7 +251,7 @@
     </header>
     <!-- header end -->
     <!-- Left sidebar menu start -->
-    <div class="ttr-sidebar">
+    <div class="ttr-sidebar" id="loader">
         <div class="ttr-sidebar-wrapper ">
             <!-- side menu logo start -->
             <div class="ttr-sidebar-logo">
@@ -473,14 +473,14 @@
                         <div class="form-group row">
                             <div class="circle">
                                 <!-- User Profile Image -->
-                                <img id="pics" class="profile-pic" src="@Url.Content(Session["UserImage"].ToString())">
+                                <img id="pics" class="profile-pic" src="" style="width : 100%; height:100%; ">
 
                                 <!-- Default Image -->
                                 <!-- <i class="fa fa-user fa-5x"></i> -->
                             </div>
                             <div class="p-image">
                                 <i class="fa fa-camera upload-button"></i>
-                                <input class="file-upload" type="file" name="ImageFile" accept="image/*" id="file" />
+                                <input  class="file-upload" type="file" name="ImageFile" accept="image/*" id="file" />
                             </div>
 
                         </div>
@@ -639,9 +639,6 @@
             $("#ModalTitle").html("Update Student");
             $("#MyModal").modal();
 
-        }
-    </script>
-
 
     @if (TempData["Message"] != null)
     {
@@ -671,7 +668,7 @@
 
 
             $(".file-upload").on('change', function () {
-                readURL(this);
+                readURL(this); 
             });
 
             $(".upload-button").on('click', function () {
