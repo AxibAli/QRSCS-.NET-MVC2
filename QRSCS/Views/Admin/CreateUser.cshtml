@@ -68,7 +68,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">NIC #</label>
                                 <div class="col-sm-7">
-                                    @Html.TextBoxFor(x => x.NIC, null, new { @class = "form-control", type = "CNIC", placeholder = "enter CNIC with dashes(#####-#######-#)",name="idNumber",Pattern="[0-9,-]{15}"})
+                                    @Html.TextBoxFor(x => x.NIC, null, new { @class = "form-control", type = "CNIC", placeholder = "enter CNIC with dashes(#####-#######-#)",name="idNumber",pattern="[0-9]{5}-[0-9]{7}-[0-9]{1}"})
                                     @Html.ValidationMessageFor(x => x.NIC, null, new { style = "color:red" })
 
                                 </div>
@@ -206,30 +206,30 @@
 <div class="ttr-overlay"></div>
 @*<script src="~/Content/adminassets/assets/js/jquery.min.js"></script>
 <script src="~/Content/JavaScript/CreateUser.js"></script>*@
-@*<script type="text/javascript">
+<script type="text/javascript">
 
     $(document).ready(function () {
-            var readURL = function (input) {
+            var readurl = function (input) {
                 if (input.files && input.files[0]) {
-                    var reader = new FileReader()
+                    var reader = new filereader()
 
                     reader.onload = function (e) {
                         $('.profile-pic').attr('src', e.target.result);
                     }
-                    reader.readAsDataURL(input.files[0]);
+                    reader.readasdataurl(input.files[0]);
                 }
             }
             function validate(file) {
                 var ext = file.split(".");
-                ext = ext[ext.length - 1].toLowerCase();
-                var arrayExtensions = ["jpg", "jpeg", "png", "bmp", "gif"];
+                ext = ext[ext.length - 1].tolowercase();
+                var arrayextensions = ["jpg", "jpeg", "png", "bmp", "gif"];
 
-                if (arrayExtensions.lastIndexOf(ext) == -1) {
-                    alert("This is not an allowed file type Please upload Picture");
+                if (arrayextensions.lastindexof(ext) == -1) {
+                    alert("this is not an allowed file type please upload picture");
                     $("#file").val("");
                 }
             }
-            //$('INPUT[type="file"]').change(function () {
+            //$('input[type="file"]').change(function () {
             //    var ext = this.value.match(/\.(.+)$/)[1];
             //    switch (ext) {
             //        case 'jpeg':
@@ -239,22 +239,22 @@
             //        $('.upload-button').attr('disabled', false);
             //          break;
             //          default:
-            //          alert('This is not an allowed file type Please upload jpg, jpeg, or png file.');
+            //          alert('this is not an allowed file type please upload jpg, jpeg, or png file.');
             //          this.value = '';
             //    }
             //});
 
             $("#file").change(function (e) {
                 var file = this.files[0], img;
-                if (Math.round(file.size / (1024 * 1024)) > 2) { // make it in MB so divide by 1024*1024
-                    alert('Please select image size less than 2 MB');
+                if (math.round(file.size / (1024 * 1024)) > 2) { // make it in mb so divide by 1024*1024
+                    alert('please select image size less than 2 mb');
                     this.value = '';
                 }
 
             });
 
             $(".file-upload").on('change', function () {
-                readURL(this);
+                readurl(this);
             });
 
             $(".upload-button").on('click', function () {
@@ -262,15 +262,14 @@
             });
         });
 
-        const togglePassword = document.querySelector('#togglePassword');
-        const password = document.querySelector('#password1');
-        togglePassword.addEventListener('click', function (f) {
+        const togglepassword = document.queryselector('#togglepassword');
+        const password = document.queryselector('#password1');
+        togglepassword.addeventlistener('click', function (f) {
             // toggle the type attribute
-            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-            password.setAttribute('type', type);
+            const type = password.getattribute('type') === 'password' ? 'text' : 'password';
+            password.setattribute('type', type);
             // toggle the eye / eye slash icon
-            this.classList.toggle('bi-eye');
+            this.classlist.toggle('bi-eye');
         });
 
-</script>*@
-
+</script>

@@ -59,7 +59,7 @@
                                 <label class="col-sm-2 col-form-label">Full Name</label>
                                 <div class="col-sm-7">
 
-                                    @Html.TextBoxFor(x => x.Full_Name, null, new { @Class = "form-control", placeholder = "User's Full Name" })
+                                    @Html.TextBoxFor(x => x.Full_Name, null, new { @Class = "form-control",type="name", placeholder = "User's Full Name" })
                                     @Html.ValidationMessageFor(x => x.Full_Name, null, new { style = "color:red" })
                                     @*, Required="required"*@
                                 </div>
@@ -67,7 +67,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Father Name</label>
                                 <div class="col-sm-7">
-                                    @Html.TextBoxFor(x => x.Father_Name, null, new { @Class = "form-control", placeholder = "User's Father Name" })
+                                    @Html.TextBoxFor(x => x.Father_Name, null, new { @Class = "form-control", type = "name", placeholder = "User's Father Name" })
                                     @Html.ValidationMessageFor(x => x.Full_Name, null, new { style = "color:red" })
 
                                 </div>
@@ -75,7 +75,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">NIC #</label>
                                 <div class="col-sm-7">
-                                    @Html.TextBoxFor(x => x.NIC, null, new { @Class = "form-control", placeholder = "NIC #" })
+                                    @Html.TextBoxFor(x => x.NIC, null, new { @Class = "form-control", type = "nic", placeholder = "NIC #" })
                                     @Html.ValidationMessageFor(x => x.NIC, null, new { style = "color:red" })
 
                                 </div>
@@ -103,7 +103,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Contact #</label>
                                 <div class="col-sm-7">
-                                    @Html.TextBoxFor(x => x.Contact_Number, null, new { @Class = "form-control", placeholder = "Contact #" })
+                                    @Html.TextBoxFor(x => x.Contact_Number, null, new { @Class = "form-control", type = "contactnum", placeholder = "Contact #" })
                                     @Html.ValidationMessageFor(x => x.Contact_Number, null, new { style = "color:red" })
 
                                 </div>
@@ -111,7 +111,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Rank</label>
                                 <div class="col-sm-7">
-                                    @Html.TextBoxFor(x => x.Rank, null, new { @Class = "form-control", placeholder = "Enter a Rank" })
+                                    @Html.TextBoxFor(x => x.Rank, null, new { @Class = "form-control", type = "name", placeholder = "Enter a Rank" })
                                     @Html.ValidationMessageFor(x => x.Rank, null, new { style = "color:red" })
 
                                 </div>
@@ -136,7 +136,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Address</label>
                                 <div class="col-sm-7">
-                                    @Html.TextBoxFor(x => x.Address, null, new { @Class = "form-control", placeholder = "Enter a Complete Address" })
+                                    @Html.TextBoxFor(x => x.Address, null, new { @Class = "form-control", type = "address", placeholder = "Enter a Complete Address" })
                                     @Html.ValidationMessageFor(x => x.Address, null, new { style = "color:red" })
 
                                 </div>
@@ -144,7 +144,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">City</label>
                                 <div class="col-sm-7">
-                                    @Html.TextBoxFor(x => x.City, null, new { @Class = "form-control", placeholder = "Enter a City" })
+                                    @Html.TextBoxFor(x => x.City, null, new { @Class = "form-control", type = "name", placeholder = "Enter a City" })
                                     @Html.ValidationMessageFor(x => x.City, null, new { style = "color:red" })
 
                                 </div>
@@ -174,7 +174,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">User Name</label>
                                     <div class="col-sm-7">
-                                        @Html.TextBoxFor(x => x.UserName, null, new { @Class = "form-control", placeholder = "Enter a User Name" })
+                                        @Html.TextBoxFor(x => x.UserName, null, new { @Class = "form-control", type = "name", placeholder = "Enter a User Name" })
                                         @Html.ValidationMessageFor(x => x.UserName, null, new { style = "color:red" })
 
                                     </div>
@@ -210,7 +210,7 @@
 <div class="ttr-overlay"></div>
 @*<script src="~/Content/adminassets/assets/js/jquery.min.js"></script>
 <script src="~/Content/JavaScript/UpdateUser.js"></script>*@
-@*<script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function () {
 
 
@@ -246,4 +246,4 @@
             this.classList.toggle('bi-eye');
         });
 
-</script>*@
+</script>

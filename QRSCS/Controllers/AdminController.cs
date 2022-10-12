@@ -215,7 +215,7 @@ namespace QRSCS_Database
             Debug.WriteLine(ImageFile);
 
             //if (user is null)
-            //{
+            //{ 
             //    throw new ArgumentNullException(nameof(user));
             //}
 
