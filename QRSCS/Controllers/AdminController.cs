@@ -208,45 +208,37 @@ namespace QRSCS_Database
             Session.Clear();
             return RedirectToAction("Login", "Login");
         }
-        public JsonResult SaveDataInDatabase(CreateUserModel user, HttpPostedFileBase ImageFile)
+
+        public void SaveDataInDatabase(CreateUserModel user)
         {
-
-            Debug.WriteLine(user.UserName);
-            Debug.WriteLine(ImageFile);
-
-            //if (user is null)
-            //{
-            //    throw new ArgumentNullException(nameof(user));
-            //}
-
-            bool check = false;
-            //Debug.WriteLine("debug information");
-            //try
-            //{
-            //    if (user.Picture != null) {
-            //        Debug.WriteLine("debug information----");
-            //        string Filename = Path.GetFileNameWithoutExtension(user.Picture);
-            //        string Extension = Path.GetExtension(user.Picture);
-            //        Filename = Filename + DateTime.Now.ToString("yymmssfff") + Extension;
-            //        user.Picture = "~/ProjectData/" + Filename;
-                    
-
-            //    }
-
-            //    CreateUserManager obj = new CreateUserManager();
-            //    user.Updated_By = Convert.ToString(Session["User_ID"]);
-            //    user.Update_Date = DateTime.Now;
-            //    user.Picture = "c:\\users\\daniy\\desktop\\version1\\version2\\qrscs-.net-mvc\\qrscs\\projectdata\\whatsapp image 2020-03-21 at 1.27.11 am211743849.jpg";
-            //    check = obj.UpdateUser(user);
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine("This is C#");
-            //    throw ex;
-            //}
-
-
-            return Json(check, JsonRequestBehavior.AllowGet);
+            CreateUserManager obj = new CreateUserManager();
+            user.Updated_By = Convert.ToString(Session["User_ID"]);
+            user.Update_Date = DateTime.Now;
+            obj.UpdateUser(user);
         }
-    }
+        public void saveimg(HttpPostedFileBase datas)
+        {
+            try {
+                string Filename = Path.GetFileNameWithoutExtension(datas.FileName);
+                string Extension = Path.GetExtension(datas.FileName);
+                Filename = Filename + DateTime.Now.ToString("yymmssfff") + Extension;
+                CreateUserManager obj = new CreateUserManager();
+                CreateUserModel user = obj.GetUser((int)Session["User_ID"]);
+                user.Picture = "~/ProjectData/" + Filename;
+                Session["UserImage"] ="/ProjectData/" + Filename;
+                Filename = Path.Combine(Server.MapPath("~/ProjectData/"), Filename);
+                datas.SaveAs(Filename);
+                //HttpPostedFileBase ImageFile = user.Picture;
+                Debug.WriteLine(user.UserName);
+                bool check = obj.UpdateUser(user);
+               
+            }
+            catch (Exception ex)
+            {
+                
+            }
+           
+
+        }
+        }
 }

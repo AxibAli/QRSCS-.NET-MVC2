@@ -27,12 +27,13 @@
                 $("#username").val(obj.UserName);
                 $("#Password").val(obj.Password);
 
+                var aw = obj.Picture;
+                var abs = aw.split("~");
+                $('#pics').attr('src', abs[1]);
             }
         })
         });
-
     $("#saverecord").click(function () {
-        alert($('#pics').attr('src'));
         var data1 = {
             User_ID: $("#prof").val(),
             Full_Name: $("#Full_Name").val(),
@@ -49,22 +50,38 @@
             UserName: $("#username").val(),
             Password: $("#Password").val(),
 
-
         };
-        var data2 = $('#pics').attr('src');
-
 
 
  
         $.ajax({
             type: "Post",
             url: "/Admin/SaveDataInDatabase",
-            data: { data1: data1, data2: data2 },
+            data: data1,
             success: function (result) {
-                alert("Successfully Updated....");
-                window.location.href = "/Admin/Index";
-                $("#MyModal").modal("hide");
+                
+                abc()
             }
         })
     })
+    function abc() {
+        var img = $('#file')[0].files[0];
+                var Db = new FormData();
+                Db.append("datas", img);
+                $.ajax({
+                    type: "Post",
+                    url: "/Admin/saveimg",
+                    data: Db,
+                    contentType: false,
+                    processData:false,
+                    success: function (result) {
+                        alert("Successfully Updated....");
+                        window.location.href = "/Admin/Index";
+                        $("#MyModal").modal("hide");
+                       
+                    }
+                })
+    }
+
+
         });

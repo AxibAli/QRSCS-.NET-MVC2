@@ -204,6 +204,7 @@
     <Compile Include="Models\MeetingInformation_IEP.cs">
       <DependentUpon>QRSCS_DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\mycreatesuerModel.cs" />
     <Compile Include="Models\Physiotherapy.cs">
       <DependentUpon>QRSCS_DatabaseModel.tt</DependentUpon>
     </Compile>
@@ -534,6 +535,7 @@
     <Content Include="Content\adminassets\js\vendor\jquery.signaturepad.min.js" />
     <Content Include="Content\adminassets\js\vendor\json2.js" />
     <Content Include="Content\adminassets\js\vendor\maskedinput.min.js" />
+    <Content Include="Content\adminassets\js\updateuserdate.js" />
     <Content Include="Content\adminassets\ProfileStyleSheet1.css" />
     <Content Include="Content\adminassets\script.js" />
     <Content Include="Content\adminassets\scrollbar.css" />
